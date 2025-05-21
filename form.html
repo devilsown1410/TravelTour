@@ -17,10 +17,10 @@
             <input type="email" id="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
             <br><br>
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" required minlength="8">
+            <input type="password" id="password" name="password" required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}">
             <br><br>
             <label for="confirm_password">Confirm Password</label>
-            <input type="password" id="confirm_password" name="confirm_password" required minlength="8">
+            <input type="password" id="confirm_password" name="confirm_password" required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}">
             <br><br>
             <label for="phone">Phone Number</label>
             <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}">
