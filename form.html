@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <fieldset>
+        <legend>Register</legend>
+        <form id="registration_form">
+            <label for="username">Full Name</label>
+            <input type="text" id="username" name="username" required>
+            <br><br>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+            <br><br>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required minlength="8">
+            <br><br>
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" id="confirm_password" name="confirm_password" required minlength="8">
+            <br><br>
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}">
+            <br><br>
+            <label for="DOB">Date of Birth</label>
+            <input type="date" id="DOB" name="DOB" required>
+            <br><br>
+            <label for="gender">Gender</label>
+            <input type="radio" id="male" value="Male" name="gender" required>
+            <label for="male">Male</label>
+            <input type="radio" id="female" value="Female" name="gender" >
+            <label for="female">Female</label>
+            <input type="radio" id="others" value="Others" name="gender" >
+            <label for="others">Others</label>
+            <br><br>
+            <label for="country">Country</label>
+            <select id="country" name="country" required>
+                <option value="India">India</option>
+                <option value="USA">USA</option>
+                <option value="UK">UK</option>
+                <option value="Canada">Canada</option>
+                <option value="Australia">Australia</option>
+                <option value="Germany">Germany</option>
+            </select>
+            <br><br>
+            <label for="hobbies">Hobbies</label>
+            <input type="checkbox" id="hobby1" value="Reading" name="hobbies">
+            <label for="hobby1">Reading</label>
+            <input type="checkbox" id="hobby2" value="Traveling" name="hobbies">
+            <label for="hobby2">Traveling</label>
+            <input type="checkbox" id="hobby3" value="Gaming" name="hobbies">
+            <label for="hobby3">Gaming</label>
+            <input type="checkbox" id="hobby4" value="Cooking" name="hobbies">
+            <label for="hobby4">Cooking</label>
+            <br><br>
+            <label for="profile_picture">Profile Picture</label>
+            <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
+            <br><br>
+            <label for="bio">Bio</label>
+            <textarea id="bio" name="bio" rows="3" cols="30" required></textarea>
+            <br><br>
+            <input type="checkbox" id="terms_conditions" name="terms_conditions" required>
+            <label for="terms_conditions">I agree to the terms and conditions</label>
+            <br><br>
+            <button type="submit">Register</button>
+        </form>
+    </fieldset>
+</body>
+<script>
+    document.getElementById('registration_form').addEventListener('submit',function(e){
+        e.preventDefault();
+        // console.log(e.target);
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
+        const hobbies=[]
+        for (let i=0;i<formData.getAll('hobbies').length;i++){
+            hobbies.push(formData.getAll('hobbies')[i]);
+        }
+        data.hobbies=hobbies;
+        console.log(data);
+        alert('Registration successful!');
+    });
+</script>
+</html>
