@@ -97,6 +97,15 @@ img{
 .price{
     font-weight: bold;
 }
+#logout{
+    background-color: #ff4d4d;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
 /* Media Query */
 @media (max-width:1024px){
