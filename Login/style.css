@@ -4,9 +4,8 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;
 }
-span{
+span {
   color: red;
-  /* margin: 10px 23px; */
 }
 .container {
   display: flex;
@@ -18,8 +17,7 @@ span{
   font-family: Arial, sans-serif;
   padding: 20px;
   box-sizing: border-box;
-  /* background-color:rgb(240, 240, 240); */
-  background-image: linear-gradient(to right, #7F7FD5, #91EAE4);
+  background-image: linear-gradient(to right, #7f7fd5, #91eae4);
 }
 .header {
   text-align: center;
@@ -38,8 +36,8 @@ span{
   display: flex;
   flex-direction: column;
   gap: 10px;
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 input[type="text"],
 input[type="password"] {
@@ -61,16 +59,13 @@ input[type="password"] {
 }
 #submit:hover {
   background-color: #45a049;
-
 }
 .button-container {
   display: flex;
-  /* justify-content: space-between; */
   margin-top: 20px;
-  /* display: flex; */
   justify-content: center;
   align-items: center;
 }
-label{
-    margin: 10px 23px;
+label {
+  margin: 10px 23px;
 }
