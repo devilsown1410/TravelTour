@@ -4,31 +4,35 @@ const password = document.querySelector("#password");
 const password_error = document.querySelector("#password_error");
 
 const checkPassword = () => {
+  console.log("inside checkPassword");
   if (password.value.trim().length < 8) {
     password_error.innerHTML = "Password must be at least 8 characters";
     password_error.style.display = "block";
-    return;
+    return false;
   } else {
     password_error.style.display = "none";
     password_error.textContent = "";
+    return true;
   }
 };
 const checkUsername = () => {
   if (username.value.trim() === "") {
     username_error.textContent = "Username is required";
     username_error.style.display = "block";
-    return;
+    return false;
   } else {
     username_error.style.display = "none";
     username_error.textContent = "";
+    return true;
   }
 };
-username.addEventListener("keyup", checkUsername);
-password.addEventListener("keyup", checkPassword);
+username.addEventListener("focusout", checkUsername);
+password.addEventListener("focusout", checkPassword);
 document.querySelector("#submit").addEventListener("click", function (e) {
   e.preventDefault();
-  checkUsername();
-  checkPassword();
+  if (!checkUsername() || !checkPassword()) {
+    return;
+  }
   const User = localStorage.getItem("User");
   const parsedUser = JSON.parse(User);
   const user = parsedUser?.find((user) => user.username === username.value);
@@ -41,8 +45,7 @@ document.querySelector("#submit").addEventListener("click", function (e) {
     username_error.textContent = "";
     password_error.textContent = "";
     return;
-  }
-  if (user) {
+  } else {
     if (user.password === password.value) {
       sessionStorage.setItem("curr_user", JSON.stringify(user));
       alert("Login successful");

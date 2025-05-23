@@ -173,14 +173,14 @@ const validateTermsConditions = () => {
   }
 };
 
-user.addEventListener("keyup", validateUsername);
-email.addEventListener("keyup", validateEmail);
-password.addEventListener("keyup", validatePassword);
-confirm_password.addEventListener("keyup", validateConfirmPassword);
-phone.addEventListener("keyup", validatePhone);
+user.addEventListener("focusout", validateUsername);
+email.addEventListener("focusout", validateEmail);
+password.addEventListener("focusout", validatePassword);
+confirm_password.addEventListener("focusout", validateConfirmPassword);
+phone.addEventListener("focusout", validatePhone);
 dob.addEventListener("change", validateDOB);
 profile_picture.addEventListener("change", validateProfilePicture);
-bio.addEventListener("keyup", validateBio);
+bio.addEventListener("focusout", validateBio);
 terms_conditions.addEventListener("change", validateTermsConditions);
 
 document.querySelectorAll("input[name=gender").forEach(function (g) {

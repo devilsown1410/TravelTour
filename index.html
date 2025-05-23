@@ -14,28 +14,14 @@
     />
   </head>
   <body>
-    <header>
-      <h1>Welcome to Travel Tour</h1>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="#">About</a></li>
-        </ul>
-      </nav>
-      <div
-        style="
-          float: right;
-          display: flex;
-          align-items: center;
-          justify-content: end;
-        "
-      >
-        <h2 style="display: inline-block">Welcome,</h2>
-        <h1 style="display: inline; font-weight: bold" id="curr_user"></h1>
+    <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
+      <h1>Travel and Tours</h1>
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <h2>Welcome,</h2>
+        <h1 id="curr_user" style="font-weight: bold;"></h1>
+        <button id="admin" style="display: none; background-color: #ff4d4d; color: white; padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer;">Users</button>
+        <button id="logout" style="background-color: #ff4d4d; color: white; padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer;">Logout</button>
       </div>
-      <button id="logout" style="float: right; margin-right: 20px">
-        Logout
-      </button>
     </header>
     <div class="container">
       <div class="card">

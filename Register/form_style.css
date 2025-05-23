@@ -83,15 +83,13 @@ fieldset > legend {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 #submit {
+  position: relative;
   background-color: #4caf50;
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
-#submit:hover {
-  background-color: #45a049;
 }
 #login_button {
   background-color: #008cba;
@@ -122,4 +120,17 @@ label[for="hobbies"] {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+}
+button[type="submit"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: left 0.3s ease;
+}
+button[type="submit"]:hover::before {
+  left: 100%;
 }
