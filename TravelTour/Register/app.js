@@ -271,7 +271,7 @@ document.querySelector("#submit").addEventListener("click", function (e) {
         "User Already Exits! Do you want to login instead?"
       );
       if (result) {
-        window.location.href = "/Login/login.html";
+        window.location.href = "../Login/login.html";
       } else {
         user.value = "";
         email.value = "";
@@ -308,6 +308,6 @@ document.querySelector("#submit").addEventListener("click", function (e) {
     profile_picture.value = "";
     bio.value = "";
     terms_conditions.checked = false;
-    window.location.href = "/Login/login.html";
+    window.location.href = "../Login/login.html";
   }
 });

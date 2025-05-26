@@ -5,7 +5,7 @@ curr_user.textContent = JSON.parse(
 
 if (!curr_user.textContent) {
   alert("Please login first");
-  window.location.href = "/Login/login.html";
+  window.location.href = "../TravelTour/Login/login.html";
 }
 const isAdmin= JSON.parse(
   sessionStorage.getItem("curr_user")
@@ -19,11 +19,11 @@ if (isAdmin) {
 document.querySelector("#logout").addEventListener("click", function (e) {
   sessionStorage.clear();
   alert("Logout successful");
-  window.location.href = "/Login/login.html";
+  window.location.href = "../TravelTour/Login/login.html";
 });
 
 document.querySelector("#admin").addEventListener("click", function (e) {
-  window.location.href = "/Admin/admin.html";
+  window.location.href = "../TravelTour/Admin/admin.html";
 });
 
 
