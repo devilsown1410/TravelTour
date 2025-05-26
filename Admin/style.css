@@ -61,3 +61,17 @@ h1 {
   box-sizing: border-box;
   font-family: Arial, sans-serif;
 }
+#delete{
+    /* background: linear-gradient(to right, #ff5f5f, #ff7e5f); */
+    
+    border: none;
+    color: white;
+    padding: 11px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#delete:hover{
+    background: linear-gradient(to right, #ff7e5f, #ff5f5f);
+    transform: scale(1.05);
+}
