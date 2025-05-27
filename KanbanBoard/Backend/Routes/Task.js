@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     // console.log(req.body);
-    const { name, description, lead } = req.body;
+    const { name, description, lead,project } = req.body;
     if (!name || !description || !lead) {
       return res
         .status(400)
@@ -27,6 +27,7 @@ router.post("/", async (req, res) => {
       name,
       description,
       lead,
+      project,
     });
     console.log(newTask);
     await newTask.save();

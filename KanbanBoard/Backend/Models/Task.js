@@ -25,6 +25,11 @@ const taskSchema=new mongoose.Schema({
         type:Date,
         default:Date.now,
     },
+    project:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Project",
+        required:true,
+    },
 });
 const Task=mongoose.model("Task",taskSchema);
 export default Task;
