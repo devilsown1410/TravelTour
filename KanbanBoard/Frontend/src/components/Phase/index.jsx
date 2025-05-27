@@ -2,22 +2,55 @@ import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import Task from "../Task";
 
-const Phase = ({ toggleRefresh = { toggleRefresh }, type = type, color=color, currLead=currLead,projectId }) => {
+const Phase = ({
+  toggleRefresh = { toggleRefresh },
+  type = type,
+  color = color,
+  currLead = currLead,
+  project,
+}) => {
   const [todos, setTodos] = useState([]);
   const [newTask, setNewTask] = useState(false);
+  const [leadInput, setLeadInput] = useState("");
+  const[suggestions, setSuggestions] = useState([]);
 
   const fetchTasks = useCallback(async () => {
     await axios
       .get("http://localhost:8080/api/tasks")
-      .then((response) =>{
-        setTodos(response.data.filter((task) => task.status === type && task.project== projectId))
-        if(currLead){
-            setTodos((prevTodos) =>
-                prevTodos.filter((task) => task.lead === currLead)
-        );}
-  })
+      .then((response) => {
+        let filteredTask = response.data.filter(
+          (task) => task.status === type && task.project == project._id
+        );
+        if (currLead !== "all") {
+          filteredTask = filteredTask.filter((task) => task.lead === currLead);
+        }
+        setTodos(filteredTask);
+      })
       .catch((error) => console.error(`Error fetching ${type}:`, error));
-  }, [type, currLead, projectId]);
+  }, [type, currLead, project._id]);
+
+  useEffect(() => {
+    const fetchSuggestions = async () => {
+      if(leadInput.length ==0) {
+        setSuggestions([]);
+        return;
+      }
+      if (project.lead && project.lead.length > 0) {
+        setSuggestions(
+          project.lead
+            .map((lead) =>
+              lead.toLowerCase().includes(leadInput.toLowerCase()) ? lead : null
+            )
+            .filter(Boolean)
+        );
+      }
+    };
+    fetchSuggestions();
+  }, [leadInput, project.lead]);
+
+  // useEffect(() => {
+  //   fetchSuggestions();
+  // }, [fetchSuggestions]);
 
   const handleDrop = async (e) => {
     e.preventDefault();
@@ -40,7 +73,7 @@ const Phase = ({ toggleRefresh = { toggleRefresh }, type = type, color=color, cu
         name: task,
         description,
         lead,
-        project: projectId,
+        project: project._id,
       })
       .then(() => {
         fetchTasks();
@@ -89,11 +122,17 @@ const Phase = ({ toggleRefresh = { toggleRefresh }, type = type, color=color, cu
           <form
             onSubmit={(e) => {
               e.preventDefault();
+              if (!project.lead.includes(leadInput)) {
+                alert("Please select a valid lead from the suggestions.");
+                return;
+              }
               const task = e.target.task.value;
               const description = e.target.description.value;
               const lead = e.target.lead.value;
               AddTask({ task, description, lead });
+              leadInput && setLeadInput("");
               e.target.reset();
+              setNewTask(false);
             }}
           >
             <div className="mb-3 ">
@@ -120,13 +159,34 @@ const Phase = ({ toggleRefresh = { toggleRefresh }, type = type, color=color, cu
                 name="lead"
                 className="form-control border border-primary rounded shadow p-1"
                 placeholder="Lead"
+                value={leadInput}
+                onChange={(e) => setLeadInput(e.target.value)
+            
+                }
                 required
               />
+              {suggestions.length > 0 && (
+                <ul className="list-group mt-2">
+                  {suggestions.map((suggestion, index) => (
+                    <li
+                      key={index}
+                      className="list-group-item list-group-item-action"
+                      onClick={() => {
+                        setLeadInput(suggestion);
+                        setSuggestions([]);
+                      }}
+                    >
+                      {suggestion}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
             <button
               type="submit"
               className="btn border-t-cyan-700 border border-primary rounded shadow p-2 cursor-pointer bg-amber-100 hover:bg-amber-200"
               style={{ width: "100%" }}
+              disabled={!suggestions.includes(leadInput)}
             >
               Add Task
             </button>
