@@ -54,7 +54,7 @@ const Approved = ({ toggleRefresh }) => {
         ) : (
           <ul className="list-group">
             {approved.map((item, index) => (
-              <Task key={index} task={item} onDragStart={handleDragStart} />
+              <Task key={index} task={item} onDragStart={handleDragStart} color={"red-400"}/>
             ))}
           </ul>
         )}

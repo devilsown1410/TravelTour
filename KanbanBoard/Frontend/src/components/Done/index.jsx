@@ -9,7 +9,7 @@ const Done = ({ toggleRefresh }) => {
     await axios
       .get("http://localhost:8080/api/tasks")
       .then((response) => {
-        setDoneItems(response.data.filter((task) => task.status === "done")); // Filter tasks to get only those marked as done
+        setDoneItems(response.data.filter((task) => task.status === "done"));
       })
       .catch((error) => console.error("Error fetching done tasks:", error));
   };
@@ -31,7 +31,7 @@ const Done = ({ toggleRefresh }) => {
   const handleDragOver = (e) => e.preventDefault();
 
   const handleDragStart = (e, task) => {
-    e.dataTransfer.setData("task", JSON.stringify(task)); // Set valid JSON data
+    e.dataTransfer.setData("task", JSON.stringify(task));
   };
 
   useEffect(() => {
@@ -44,8 +44,8 @@ const Done = ({ toggleRefresh }) => {
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
-      <div className="text-center bg-primary text-black p-3 mb-3 rounded shadow mt-3 ">
-        <h1>In Done</h1>
+      <div className="text-center bg-primary text-black p-3 mb-3 rounded shadow mt-3">
+        <h1>Done</h1>
       </div>
       <div className="container">
         {doneItems.length === 0 ? (
@@ -55,7 +55,7 @@ const Done = ({ toggleRefresh }) => {
         ) : (
           <ul className="list-group">
             {doneItems.map((item, index) => (
-              <Task key={index} task={item} onDragStart={handleDragStart} />
+              <Task key={index} task={item} onDragStart={handleDragStart} color={"orange-300"}/>
             ))}
           </ul>
         )}

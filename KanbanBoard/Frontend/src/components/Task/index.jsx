@@ -1,9 +1,9 @@
 import React from "react";
 
-const Task = ({ task, onDragStart }) => {
+const Task = ({ task, onDragStart, color}) => {
   return (
     <div
-      className="card mb-3 border border-primary shadow rounded-xl p-3 bg-amber-100 text-zinc-950 duration-300 hover:shadow-xl scale-105 hover:bg-amber-200 cursor-pointer transform transition-transform"
+      className={`card mb-3 border border-primary shadow rounded-xl p-3 bg-${color} shadow-lg hover:shadow-2xl hover:scale-105 cursor-pointer`}
       draggable="true"
       onDragStart={(e) => onDragStart(e, task)}
     >

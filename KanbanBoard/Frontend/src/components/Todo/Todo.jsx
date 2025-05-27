@@ -38,7 +38,6 @@ const Todo = ({ toggleRefresh }) => {
         lead,
       })
       .then(() => {
-        // setTodos([...todos, response.data]);
         fetchTasks();
       })
       .catch((error) => {
@@ -47,7 +46,7 @@ const Todo = ({ toggleRefresh }) => {
   };
 
   const handleDragStart = (e, task) => {
-    e.dataTransfer.setData("task", JSON.stringify(task)); // Set valid JSON data
+    e.dataTransfer.setData("task", JSON.stringify(task));
   };
 
   useEffect(() => {
@@ -71,13 +70,13 @@ const Todo = ({ toggleRefresh }) => {
         ) : (
           <div className="list-group">
             {todos.map((task, index) => (
-              <Task key={index} task={task} onDragStart={handleDragStart} />
+              <Task key={index} task={task} onDragStart={handleDragStart} color={"blue-300"} />
             ))}
           </div>
         )}
       </div>
       {newTask && (
-        <div className="mt-3 bg-amber-100 p-3 border border-primary rounded shadow">
+        <div className="mt-3 bg-amber-100 p-3 flex justify-center border-1 rounded shadow text-zinc-950">
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -117,7 +116,7 @@ const Todo = ({ toggleRefresh }) => {
             </div>
             <button
               type="submit"
-              className="btn border-t-cyan-700 border border-primary rounded shadow p-2 cursor-pointer"
+              className="btn border-t-cyan-700 border border-primary rounded shadow p-2 cursor-pointer bg-amber-100 hover:bg-amber-200"
               style={{ width: "100%" }}
             >
               Add Task
@@ -126,7 +125,7 @@ const Todo = ({ toggleRefresh }) => {
         </div>
       )}
       <button
-        className="btn btn-secondary mt-3 border border-primary rounded shadow p-2 cursor-pointer bg-amber-100"
+        className="btn btn-secondary mt-3 border border-primary rounded shadow p-2 cursor-pointer bg-amber-100 hover:bg-amber-200"
         style={{ width: "100%" }}
         onClick={() => setNewTask(!newTask)}
       >

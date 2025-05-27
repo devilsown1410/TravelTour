@@ -14,7 +14,7 @@ const Board = () => {
   return (
     <>
       <Header />
-      <div className="flex justify-around items-center flex-row border-2 border-blue-500 p-3 mb-3 rounded shadow mt-3 gap-2 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-300 hover:shadow-xl hover:bg-blue-50 dark:hover:bg-blue-900 hover:border-blue-600 dark:hover:border-blue-400 
+      <div className="flex justify-around items-start flex-row border-1 gap-2 p-2 h-screen overflow-y-auto bg-gray-100
       ">
         <Todo toggleRefresh={toggleRefresh} />
         <InProgress toggleRefresh={toggleRefresh} />

@@ -39,7 +39,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Update task status
 router.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;

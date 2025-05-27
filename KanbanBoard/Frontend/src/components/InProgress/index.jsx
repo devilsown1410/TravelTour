@@ -9,7 +9,6 @@ const InProgress = ({ toggleRefresh }) => {
     await axios
       .get("http://localhost:8080/api/tasks")
       .then((response) => {
-        // Filter tasks to get only those in progress
         const responseData = response.data.filter(
           (task) => task.status === "inProgress"
         );
@@ -38,7 +37,6 @@ const InProgress = ({ toggleRefresh }) => {
 
   const handleDragStart = (e, task) => {
     e.dataTransfer.setData("task", JSON.stringify(task));
-    // Set valid JSON data
   };
 
   useEffect(() => {
@@ -62,7 +60,7 @@ const InProgress = ({ toggleRefresh }) => {
         ) : (
           <ul className="list-group">
             {inProgress.map((item, index) => (
-              <Task key={index} task={item} onDragStart={handleDragStart} />
+              <Task key={index} task={item} onDragStart={handleDragStart} color={"yellow-300"} />
             ))}
           </ul>
         )}
