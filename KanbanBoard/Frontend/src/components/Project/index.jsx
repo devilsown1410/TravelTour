@@ -14,7 +14,6 @@ const Project=()=>{
         }
     }
     const handleProjectClick = (projectId) => {
-        console.log("Project clicked:", projectId);
         navigate(`/project/${projectId}`);
     };
     useState(() => {

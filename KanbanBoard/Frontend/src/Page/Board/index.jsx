@@ -10,8 +10,16 @@ const Board = () => {
   const toggleRefresh = () => {
     setRefresh(!refresh);
   };
+  
   useEffect(() => {
     const fetchData = async () => {
+      if(projectId=== "undefined" || projectId === "") {
+        return (
+          <div className="flex justify-center items-center h-screen">
+            <h1 className="text-2xl font-bold">Project ID not found</h1>
+          </div>
+        );
+      }
       try {
         const response = await fetch(
           "http://localhost:8080/api/projects/" + projectId
