@@ -38,13 +38,13 @@ const Board = () => {
       }
     };
     fetchProject();
-  }, [projectId]);
+  }, []);
 
   useEffect(() => {
     if (project._id) {
       fetchTasks();
     }
-  }, [fetchTasks, refresh, currLead, project._id]);
+  }, [fetchTasks]);
 
   return (
     <>
