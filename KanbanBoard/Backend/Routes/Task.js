@@ -29,10 +29,8 @@ router.post("/", async (req, res) => {
       lead,
       project,
     });
-    console.log(newTask);
     await newTask.save();
     res.status(201).json(newTask);
-    console.log("done");
   } catch (error) {
     res
       .status(500)

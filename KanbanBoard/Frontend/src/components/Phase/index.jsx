@@ -21,7 +21,7 @@ const Phase = ({
         let filteredTask = response.data.filter(
           (task) => task.status === type && task.project == project._id
         );
-        if (currLead !== "all") {
+        if (currLead!== "" && currLead !== "all") {
           filteredTask = filteredTask.filter((task) => task.lead === currLead);
         }
         setTodos(filteredTask);
@@ -37,20 +37,14 @@ const Phase = ({
       }
       if (project.lead && project.lead.length > 0) {
         setSuggestions(
-          project.lead
-            .map((lead) =>
-              lead.toLowerCase().includes(leadInput.toLowerCase()) ? lead : null
-            )
-            .filter(Boolean)
+          project.lead.filter((lead) =>
+            lead.toLowerCase().includes(leadInput.toLowerCase())
+          )
         );
       }
     };
     fetchSuggestions();
   }, [leadInput, project.lead]);
-
-  // useEffect(() => {
-  //   fetchSuggestions();
-  // }, [fetchSuggestions]);
 
   const handleDrop = async (e) => {
     e.preventDefault();
@@ -105,7 +99,7 @@ const Phase = ({
             <h2>No {type} Available</h2>
           </div>
         ) : (
-          <div className="list-group">
+          <div className="list-group overflow-y-auto h-96">
             {todos.map((task, index) => (
               <Task
                 key={index}
@@ -170,7 +164,7 @@ const Phase = ({
                   {suggestions.map((suggestion, index) => (
                     <li
                       key={index}
-                      className="list-group-item list-group-item-action"
+                      className="list-group-item list-group-item-action rounded shadow p-1 cursor-pointer bg-amber-50"
                       onClick={() => {
                         setLeadInput(suggestion);
                         setSuggestions([]);

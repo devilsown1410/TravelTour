@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-// import Todo from "../../components/Todo/Todo";
 import Header from "../../components/Header";
 import { useState } from "react";
 import Phase from "../../components/Phase";
@@ -18,7 +17,6 @@ const Board = () => {
           "http://localhost:8080/api/projects/" + projectId
         );
         const data = await response.json();
-        console.log(data);
         setProject(data);
       } catch (error) {
         console.error("Error fetching tasks:", error);
